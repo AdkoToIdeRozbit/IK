@@ -1,0 +1,17 @@
+{
+  "name": "hh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "meshline": "^2.0.3",
+    "three": "^0.136.0",
+    "three-line2": "^1.1.9",
+    "three.meshline": "^1.0.0"
+  }
+}

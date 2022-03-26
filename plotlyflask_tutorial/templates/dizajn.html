@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% block title %}Design {% endblock %} {% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dizajn.css') }}">
+<link rel="icon" href="../static/photos/ico.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="../static/photos/ico.ico" />
+
+<!--quarter of a kruznica top left see backround subtle texture-->
+
+<div class="main_content">
+
+    <div>
+        {% if not user.is_authenticated %}
+        <button style="position: absolute;right: 7.5%;" type="button" class="btn btn-success" data-toggle="modal"
+            data-target="#loginModal">
+            Login
+        </button>
+        {% endif %}
+
+
+        <div style="font-size: 5vw; padding-left: 4%;"> Designer</div>
+
+    </div>
+
+
+
+    <div class="main">
+
+        <canvas id="bg" class="go"></canvas>
+
+        <div style="position: relative;">
+
+            <div class="geeks">
+
+            </div>
+
+            <div id="div" class="go"></div>
+
+            <button style="position: absolute;bottom: 5px;right:5px;" id="discard_button"
+                class="fire btn btn-outline-danger">Discard last joint.</button>
+            <div style="position: absolute;bottom:5px;left:5px;" type="ID_text" name="ID_text" class="ID_text"
+                id="ID_text">
+                ID: </div>
+            <div class="alertDiv" style="z-index: 10;position: absolute;top: 0;right:0;"></div>
+        </div>
+
+
+        <div class="flex flex_table">
+            <div style="text-align: center;font-size: large;"> <b>Table of DH parameters</b></div>
+            <div class="table_buttons" id="flex">
+                <a href="/dash"><button class="code_button btn btn-outline-primary" id="compute">Compute
+                        IK</button></a>
+                {% if user.is_authenticated %}
+                <a href="/account"><button id="save_diagram" class="btn btn-outline-primary">Save diagram in
+                        account</button></a>
+                {% else %}
+                <a href="/log-in"><button id="save_diagram" class="btn btn-outline-primary">Save diagram in
+                        account</button></a>
+                {% endif %}
+            </div>
+            <div class="add_robot">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-primary" type="button" id="id_button">Add</button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter ID of your kinematic chain."
+                        aria-label="" aria-describedby="basic-addon1" id="code">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="before_alert" style="text-align: center;font-size: 1.5vw; list-style: none">
+        <li></li>
+        <br>
+        <li><b>Save diagram</b> will save current diargam in your account,</li>
+        <li>if you want to add already existing diagram, place it's <i>ID</i> in the input field.</li>
+        <li><b>Compute IK</b> will take you to trajectory planner, for your inverse kinematics problem.</li>
+
+    </ul>
+</div>
+
+
+
+</div>
+
+<br><br><br>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
+<script type="module" src="{{ url_for('static', filename='js/jsjs.js') }}"></script>
+
+
+
+{% endblock %}
