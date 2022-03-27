@@ -245,10 +245,10 @@ data-target="#loginModal"> */
     font-size: 2.5vw;
   }
 
-  .rc-slider-mark{
-    font-size: 2vw;
+  .rc-slider-mark-text{
+  font-size: 1.6vw !important;
   }
-  
+
   .rc-slider-rail, .rc-slider-track {
     height: 0.7vw;
   }
@@ -282,6 +282,8 @@ data-target="#loginModal"> */
 
 .rc-slider-mark-text{
   font-weight: bold;
+  color: black;
+  opacity: 0.8;
 }
 
 .rc-slider-dot{
@@ -295,8 +297,18 @@ data-target="#loginModal"> */
 .rc-slider-mark{
   font-size: 1.3vw;
 }
+ .rc-slider-mark-text{
+   font-size: 1vw;
+  font-weight: bold;
+  color: black;
+  opacity: 0.8;
+}
 
-
+ .angle_controls{
+   display: flex;
+   flex-direction: column;
+   gap: 3vw;
+ } 
 
 
 

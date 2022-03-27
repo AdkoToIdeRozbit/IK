@@ -87,9 +87,11 @@ layout = [
         [
             html.Div(
                 [
-                    html.Div("Trajectory planner", className="trajectory_planner"),
-                    dcc.Loading(children=dcc.Graph(id="robot_graph", figure={}), type="circle",id="loading-1"),
-                    
+                    html.Div("Trajectory planner",
+                             className="trajectory_planner"),
+                    dcc.Loading(children=dcc.Graph(id="robot_graph",
+                                figure={}), type="circle"),
+
                     html.Button(
                         "Clear trajectory",
                         id="clear_value",
@@ -195,7 +197,7 @@ def init_dashboard(server):
                 "rel": "stylesheet",
             },
         ],
-        title="IK",
+        title="Inverse Kinematics",
     )
     dash_app.layout = html.Div(
         [
@@ -228,8 +230,8 @@ def init_callbacks(dash_app):
             Input("clear_value", "n_clicks"),
         ],
     )
-    def update_graph(novX, novY, novZ, n_clicks, clear_clicks, loader_ignore):
-        
+    def update_graph(novX, novY, novZ, n_clicks, clear_clicks):
+
         ctx = dash.callback_context
         if not ctx.triggered:
             button_id = "No clicks yet"
@@ -297,7 +299,8 @@ def init_callbacks(dash_app):
                     and (isinstance(novY, float) or isinstance(novY, int))
                     and (isinstance(novZ, float) or isinstance(novZ, int))
                 ):
-                    xBodka = (novX - X[-1]) / precision  # higher number more precise:+_
+                    # higher number more precise:+_
+                    xBodka = (novX - X[-1]) / precision
                     yBodka = (novY - Y[-1]) / precision
                     zBodka = (novZ - Z[-1]) / precision
                     if speedmode == 1:
@@ -327,7 +330,8 @@ def init_callbacks(dash_app):
                     y=Y,
                     z=Z,
                     name="Kinematic chain",
-                    marker=dict(size=4, colorscale="Viridis"),  # choose a colorscale
+                    # choose a colorscale
+                    marker=dict(size=4, colorscale="Viridis"),
                     # opacity=0.8),
                     line=dict(width=10)
                 )
@@ -563,7 +567,8 @@ def get_speed_up_jacobian(x, y, z):
         jed_matica = np.matrix([[0], [0], [1]])
         prvy_element = np.cross(jed_matica, dis_from_0[-1], axis=0)
         JACOBIAN = np.matrix(
-            [[prvy_element.item(0)], [prvy_element.item(1)], [prvy_element.item(2)]]
+            [[prvy_element.item(0)], [prvy_element.item(1)], [
+                prvy_element.item(2)]]
         )
 
         b = 0
@@ -628,7 +633,8 @@ def get_speed_up_jacobian(x, y, z):
         TRAJECTORY_Z.append(newz)
 
         rozdiel = (
-            (x - newx) * (x - newx) + (y - newy) * (y - newy) + (z - newz) * (z - newz)
+            (x - newx) * (x - newx) + (y - newy) *
+            (y - newy) + (z - newz) * (z - newz)
         ) ** (1 / 2)
         if 0.10 < rozdiel < 0.25:
             print(g)
@@ -662,7 +668,8 @@ def get_slow_down_jacobian(x, y, z, slow_down):
         jed_matica = np.matrix([[0], [0], [1]])
         prvy_element = np.cross(jed_matica, dis_from_0[-1], axis=0)
         JACOBIAN = np.matrix(
-            [[prvy_element.item(0)], [prvy_element.item(1)], [prvy_element.item(2)]]
+            [[prvy_element.item(0)], [prvy_element.item(1)], [
+                prvy_element.item(2)]]
         )
 
         for b, i in enumerate(hom_from_0[:-1]):
@@ -733,7 +740,8 @@ def get_slow_down_jacobian(x, y, z, slow_down):
             TRAJECTORY_Z.append(newz)
 
         rozdiel = (
-            (x - newx) * (x - newx) + (y - newy) * (y - newy) + (z - newz) * (z - newz)
+            (x - newx) * (x - newx) + (y - newy) *
+            (y - newy) + (z - newz) * (z - newz)
         ) ** (1 / 2)
 
         if 0.10 < rozdiel < 0.25:
@@ -757,7 +765,8 @@ def get_constant_jacobian(x, y, z, x_dot, y_dot, z_dot):
         jed_matica = np.matrix([[0], [0], [1]])
         prvy_element = np.cross(jed_matica, dis_from_0[-1], axis=0)
         JACOBIAN = np.matrix(
-            [[prvy_element.item(0)], [prvy_element.item(1)], [prvy_element.item(2)]]
+            [[prvy_element.item(0)], [prvy_element.item(1)], [
+                prvy_element.item(2)]]
         )
 
         for b, i in enumerate(hom_from_0[:-1]):
@@ -817,7 +826,8 @@ def get_constant_jacobian(x, y, z, x_dot, y_dot, z_dot):
         TRAJECTORY_Z.append(newz)
 
         rozdiel = (
-            (x - newx) * (x - newx) + (y - newy) * (y - newy) + (z - newz) * (z - newz)
+            (x - newx) * (x - newx) + (y - newy) *
+            (y - newy) + (z - newz) * (z - newz)
         ) ** (1 / 2)
         if 0.10 < rozdiel < 0.25:
             print(g)
@@ -841,10 +851,12 @@ def calculate_matricies():
         COS = math.cos((UHLY[i] * 0.0174532925) + THETAS[i])
 
         a = np.array(
-            [COS, -SIN * math.cos(ALFAS[i]), SIN * math.sin(ALFAS[i]), COS * Rs[i]]
+            [COS, -SIN * math.cos(ALFAS[i]), SIN *
+             math.sin(ALFAS[i]), COS * Rs[i]]
         )
         b = np.array(
-            [SIN, COS * math.cos(ALFAS[i]), -COS * math.sin(ALFAS[i]), SIN * Rs[i]]
+            [SIN, COS * math.cos(ALFAS[i]), -COS *
+             math.sin(ALFAS[i]), SIN * Rs[i]]
         )
         c = np.array([0, math.sin(ALFAS[i]), math.cos(ALFAS[i]), Ds[i]])
         d = np.array([0, 0, 0, 1])
@@ -993,10 +1005,11 @@ def render_dashboard(userInfo):
             className="angle_input",
         )
         slider_output = html.Div(
-            [html.Div(id={"type": "slider-output", "index": i}), input], 
+            [html.Div(id={"type": "slider-output", "index": i}), input],
             className="limitations",
         )
-        SLIDERS.append(html.Div([slider_output, slider, empty_div], className="slider"))
+        SLIDERS.append(
+            html.Div([slider_output, slider, empty_div], className="slider"))
         UHLY.append(0)
 
     precision_slider = dcc.Slider(
@@ -1042,7 +1055,8 @@ def render_dashboard(userInfo):
     check_box = dcc.Checklist(
         id="my-checklist",
         options=[
-            {"label": " Negative angle exception", "value": True, "disabled": False}
+            {"label": " Negative angle exception",
+                "value": True, "disabled": False}
         ],
         value=[True],
     )
@@ -1050,7 +1064,8 @@ def render_dashboard(userInfo):
 
     round = dcc.Checklist(
         id="my-checklist2",
-        options=[{"label": " Round results", "value": True, "disabled": False}],
+        options=[{"label": " Round results",
+                  "value": True, "disabled": False}],
         value=False,
     )
     roundDiv = html.Div(id="my-checklist2-output")
