@@ -251,6 +251,7 @@ hr{
   
         .geeks::before {
             animation: animate 1.5s linear forwards;
+            animation-delay: 5;
         }
   
         @keyframes animate {
@@ -295,6 +296,7 @@ hr{
   
         .geeks::after {
             animation: animates 1.5s linear forwards;
+            animation-delay: 5;
         }
   
         @keyframes animates {

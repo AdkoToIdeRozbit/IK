@@ -1,7 +1,7 @@
 from flask import render_template, redirect
-from flask import current_app as app, Blueprint
+from flask import current_app as app
 import dash
-from dash import Dash, html, Input, Output, dcc, MATCH, ALL, State
+from dash import Dash, html, Input, Output, dcc, MATCH, State
 import plotly.graph_objects as go
 import dash_dangerously_set_inner_html
 from flask_login import login_required, current_user
@@ -88,7 +88,8 @@ layout = [
             html.Div(
                 [
                     html.Div("Trajectory planner", className="trajectory_planner"),
-                    dcc.Graph(id="robot_graph", figure={}),
+                    dcc.Loading(children=dcc.Graph(id="robot_graph", figure={}), type="circle",id="loading-1"),
+                    
                     html.Button(
                         "Clear trajectory",
                         id="clear_value",
@@ -98,7 +99,6 @@ layout = [
                 ],
                 className="robot_graph",
             ),
-            html.Div(html.Button("Settings", className="settings")),
             html.Div(
                 [
                     html.Div("Control panel", className="ovladaci_panel"),
@@ -184,7 +184,6 @@ singular_matrix_alert = dbc.Alert(
 
 def init_dashboard(server):
     """Create a Plotly Dash dashboard."""
-    global dash_app
     dash_app = Dash(
         server=server,
         routes_pathname_prefix="/dash/",
@@ -229,7 +228,8 @@ def init_callbacks(dash_app):
             Input("clear_value", "n_clicks"),
         ],
     )
-    def update_graph(novX, novY, novZ, n_clicks, clear_clicks):
+    def update_graph(novX, novY, novZ, n_clicks, clear_clicks, loader_ignore):
+        
         ctx = dash.callback_context
         if not ctx.triggered:
             button_id = "No clicks yet"
@@ -248,7 +248,6 @@ def init_callbacks(dash_app):
                 line=dict(width=10),
             )
         )
-
         if (
             (isinstance(novX, float) or isinstance(novX, int))
             and (isinstance(novY, float) or isinstance(novY, int))
@@ -268,8 +267,6 @@ def init_callbacks(dash_app):
             # fig.update_traces(scene='scene', selector=dict(type='scatter3d'),)
 
         fig.update_layout(
-            width=700,
-            height=600,
             scene=dict(
                 xaxis=dict(
                     range=[-30, 30],
@@ -332,13 +329,11 @@ def init_callbacks(dash_app):
                     name="Kinematic chain",
                     marker=dict(size=4, colorscale="Viridis"),  # choose a colorscale
                     # opacity=0.8),
-                    line=dict(width=10),
+                    line=dict(width=10)
                 )
             )
 
             fig.update_layout(
-                width=700,
-                height=600,
                 scene=dict(
                     xaxis=dict(
                         nticks=4,
@@ -980,16 +975,13 @@ def render_dashboard(userInfo):
             0,
             MAX_ANGLES[i],
             id={"type": "slider", "index": i},
+            className="slider_color",
             value=0,
             marks={
                 0: {"label": "0°"},
-                45: {"label": "45°"},
                 90: {"label": "90°"},
-                135: {"label": "135°"},
                 180: {"label": "180°"},
-                225: {"label": "225°"},
                 270: {"label": "270°"},
-                315: {"label": "315°"},
                 360: {"label": "360°"},
             },
         )
@@ -1001,7 +993,7 @@ def render_dashboard(userInfo):
             className="angle_input",
         )
         slider_output = html.Div(
-            [html.Div(id={"type": "slider-output", "index": i}), input],
+            [html.Div(id={"type": "slider-output", "index": i}), input], 
             className="limitations",
         )
         SLIDERS.append(html.Div([slider_output, slider, empty_div], className="slider"))
