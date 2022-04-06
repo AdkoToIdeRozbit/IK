@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block title %}Account {% endblock %} {% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+
+<h1>Your account, {{ user.first_name }}.</h1>
+<a href="log-out" style="position: absolute;top: 0;right: 0;"><button class="btn btn-outline-danger"
+    data-toggle="confirmation">Log
+    out</button></a>
+{% if user.notes %}
+<p style="font-size: large;">Here you can check and edit your saved kinematic chains</p>
+{% else %}
+<p style="font-size: large;">You don't have any saved diagrams yet</p>
+{% endif %}
+<br>
+<br>
+<hr>
+
+
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item{{ note.id }}" onload="myFunction()">
+    <div class="note_data_text note_data_text{{ note.id }}">{{ note.data }}</div>
+
+    <div class="account_buttons button{{ note.id }}">
+      <button type="button" class="btn btn-outline-primary edit{{ note.id }}">Edit</button>
+      <a href="/dash"><button type="button" class="btn btn-outline-success compute compute{{ note.id }}">Compute
+          IK</button></a>
+    </div>
+
+
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  <br>
+  <div class="date" style="text-align: right;">{{note.date}} </div>
+  <hr>
+  {% endfor %}
+</ul>
+
+<div style="display: flex;justify-content: center;">
+  <div>
+    <img src="{{ url_for('static', filename='robotsvg/1.svg') }}" alt="logo">
+    <img src="{{ url_for('static', filename='robotsvg/2.svg') }}" alt="logo" style="position: absolute; display: none;">
+    <img src="{{ url_for('static', filename='robotsvg/3.svg') }}" alt="logo" style="position: absolute; display: none;">
+    <img src="{{ url_for('static', filename='robotsvg/4.svg') }}" alt="logo" style="position: absolute; display: none;">
+  </div>
+</div>
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/delete_id.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/load_robots.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/edit_chain.js') }}"></script>
+{% endblock %}

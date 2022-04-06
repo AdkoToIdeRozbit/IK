@@ -1,0 +1,174 @@
+{% extends "base.html" %} {% block title %}Help{% endblock %} {% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+
+<div class="text-center">
+  <h2 class="mt-5 mb-5">Help centre</h2>
+</div>
+<section class="container my-5" id="maincontent">
+  <section id="accordion">
+    <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top"
+      aria-controls="faq-22" aria-expanded="false" data-toggle="collapse" href="#faq-22" role="button">
+      <div class="position-relative">
+        <h2 class="h4 m-0 pr-3">
+          What is this website good for?
+        </h2>
+        <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </div>
+      </div>
+    </a>
+    <div class="collapse" id="faq-22">
+      <div>
+        <p>The best use of this website is to figure out inverse kinematics for general kinematic chain of articulated
+          manipulators.</p>
+        <p>You can recreate your chain in section Designer, save it in account never to lose it. Every chain has
+          specific ID which is used to recreate it.</p>
+        <p>Redirecting to Inverse kinematics section from either Designer or Account, trajectory is going to be planned
+          based on settings of your control panel.</p>
+        <p>
+        </p>
+      </div>
+    </div>
+
+    <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top"
+      aria-controls="faq-17" aria-expanded="false" data-toggle="collapse" href="#faq-17" role="button">
+      <div class="position-relative">
+        <h2 class="h4 m-0 pr-3">
+          How to draw my kinematic diagram?
+        </h2>
+        <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
+          <i class="fa fa-plus"></i>
+        </div>
+      </div>
+    </a>
+    <div class="collapse" id="faq-17">
+      <div>
+        <p>Just watch this vieo! Make sure to come back to recreate your diagram and you have your inverse kinematics
+          figured out!</p>
+        <p></p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ut4uZ6Yzv6o?start=563"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+
+      </div>
+    </div>
+
+    <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top"
+      aria-controls="faq-18" aria-expanded="false" data-toggle="collapse" href="#faq-18" role="button">
+      <div class="position-relative">
+        <h2 class="h4 m-0 pr-3">
+          I am not sure what to do with axis
+        </h2>
+        <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
+          <i class="fa fa-plus"></i>
+        </div>
+      </div>
+    </a>
+    <div class="collapse" id="faq-18">
+      <div>
+        <p>The axes are the reference frames asociated with your joints. They descrive how your robot looks like in more
+          mathematical way.
+          There are rules for their right orientation:</p>
+        <div>
+          <div>Z-axis — The z-axis should lie on the axis of rotation for a revolute joint or axis of extension for a
+            prismatic joint.</div>
+          <div>X-axis — The x-axis should lie along the "common normal", which is the shortest orthogonal line between
+            the previous z-axis and the current z-axis.</div>
+          <div>Y-axis — Once you've calculated the other two, this axis should fall into place by following the "right
+            hand rule" (see below).</div>
+          <p></p>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/rA9tm0gTln8" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <p>
+        </p>
+      </div>
+    </div>
+
+    <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top"
+      aria-controls="faq-19" aria-expanded="false" data-toggle="collapse" href="#faq-19" role="button">
+      <div class="position-relative">
+        <h2 class="h4 m-0 pr-3">
+          What is the right hand rule?
+        </h2>
+        <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
+          <i class="fa fa-plus"></i>
+        </div>
+      </div>
+    </a>
+    <div class="collapse" id="faq-19">
+      <div>
+        <p>To use it, hold out your right hand in front of you, sticking out your thumb, index finger, and middle finger
+          at 90 degrees to each other. Each finger then corresponds to an axis:</p>
+        <div>Thumb = z-axis. </div>
+        <div>Index finger = x-axis. </div>
+        <div>Middle finger = y-axis.</div>
+        <p></p>
+        <p>By orienting your thumb and index finger to follow the z and x axis of the robot joint, your middle finger
+          will naturally fall into the direction of the y-axis. </p>
+        <p>
+        </p>
+      </div>
+    </div>
+
+    <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top"
+      aria-controls="faq-20" aria-expanded="false" data-toggle="collapse" href="#faq-20" role="button">
+      <div class="position-relative">
+        <h2 class="h4 m-0 pr-3">
+          What should I look out for?
+        </h2>
+        <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
+          <i class="fa fa-plus"></i>
+        </div>
+      </div>
+    </a>
+    <div class="collapse" id="faq-20">
+      <div>
+        <p>Be sure to double check if your desired position is in reach of your robot, otherwise unpredictible behaivior
+          may occur.</p>
+        <p>It is no problem though, you can just delete bad trajectory and choose another, until you nail it!</p>
+        <p></p>
+        <p>Another thing to look out for are limitations of your actuators. Most servo motors have maximum turning angle
+          of 180°</p>
+        <p>Just make sure you enterd the limitations, so wrong trajectory is not going to be planned</p>
+        <p>
+        </p>
+      </div>
+    </div>
+
+    <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top"
+      aria-controls="faq-21" aria-expanded="false" data-toggle="collapse" href="#faq-21" role="button">
+      <div class="position-relative">
+        <h2 class="h4 m-0 pr-3">
+          Can i see some example robots?
+        </h2>
+        <div class="position-absolute top-0 right-0 h-100 d-flex align-items-center">
+          <i class="fa fa-plus"></i>
+        </div>
+      </div>
+    </a>
+    <div class="collapse" id="faq-21">
+      <div>
+        <p>Sure! here are some that you can try out:</p>
+        <p>
+        <div>ID: -21,3.5,0,z,,,,-21,31.5,0,x,2,,,10.5,31.5,0,x,2,,,10.5,3.5,0,e,2,2,;12;11;10;</div>
+        <div>ID: -21,3.5,0,z,,,,-21,28,0,x,2,,,7,28,0,x,2,,,35,28,0,x,2,,,35,3.5,0,e,2,2,;12;11;10;12;11;10;</div>
+        <div>ID: -21,3.5,0,z,,,,-21,31.5,0,z,,,,-21,59.5,0,x,2,,,14,59.5,0,x,2,,,14,35,0,e,2,2,;12;11;10;16;</div>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!--
+{% if user.is_authenticated %}
+<h1>AHJA {{ user.first_name }}</h1>
+{% else %}
+<h1>AHJA</h1>
+{% endif %}-->
+{% endblock %}

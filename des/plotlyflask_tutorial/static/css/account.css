@@ -1,0 +1,181 @@
+
+.kontainer{
+  position: relative;
+  padding: 0;
+  min-height: 120%;
+  margin: 5%;
+}
+
+
+.edit_robot_flex{
+  display: flex;
+}
+
+.edit_buttons{
+  display: flex;
+  position: fixed;
+  top: 89%;
+  gap: 10px;
+  left: 24.6%;
+}
+
+#closee{
+  position: fixed;
+  top: 12%;
+  right:23%;
+}
+
+.account_buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ad{
+  width: 28px;
+}
+
+
+.edit_robot {
+  position: fixed;
+  outline: 5px solid;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.note_data_text{
+  width: 40%;
+  font-size: large;
+  word-wrap: break-word;
+}
+
+.group-items{
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  height: 1px;
+  background-color: #000000;
+  opacity: 0.2;
+}
+
+.ad{
+  width: 32px;
+  height: 20px;
+  size: 5px;
+}
+.ad::-webkit-input-placeholder, .ad::-webkit-input{
+    font-size: 10px;
+}
+
+html{
+  height: 100%;
+}
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+#kanvas{
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+	width: 100% !important;
+	height:110% !important;
+  z-index: -1;
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: 'Vibur', cursive;
+  font-family: 'Abel', sans-serif;
+  opacity: .95;
+}
+
+.divRobot{
+  width: 500px;
+  height: 300px;
+  background-image:none !important;
+}
+
+
+
+
+.list-inline{
+  display: flex;
+
+}
+
+.footer-basic {
+  position:absolute;
+  bottom: -10%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding:15px 0;
+  background-color:#24252a;
+  color:#ffffff;
+}
+
+.footer-basic ul {
+  padding:0;
+  list-style:none;
+  text-align:center;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:0;
+}
+
+.footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic .social {
+  text-align:center;
+
+  padding-bottom:10px;
+}
+
+.footer-basic .social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin:0 8px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-basic .social > a:hover {
+  opacity:0.9;
+}
+
+.footer-basic .copyright {
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:0;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/alertify.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
+  <link rel="icon" href="../static/photos/ico.ico" type="image/x-icon" />
+
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="/help"><img src="{{ url_for('static', filename='svg/svg2.svg') }}" alt="logo"></a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="/dash">Inverse kinematics</a></li>
+        <li><a href="/">Design</a></li>
+        <li><a href="/account">My account</a></li>
+        <li><a href="/help">Help</a></li>
+
+
+        <!--<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {% if user.is_authenticated %}Účet - {{user.first_name}}{% else %}Účet{% endif %}
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+
+        <div class="dropdown">
+          <li>
+            {% if user.is_authenticated %}
+            <a>Účet - {{user.first_name}}
+              <i class="fa fa-caret-down"></i></a>
+            {% else %}
+            <a>Účet <i class="fa fa-caret-down"></i></a>
+            {% endif %}
+          </li>
+
+          <div class="dropdown-content">
+            {% if user.is_authenticated %}
+            <a href="/account">My account</a>
+            <a href="/log-out">Log out</a>
+            {% else %}
+            <a href="/log-in">Log in</a>
+            <a href="/sign-up">Sign up</a>
+            {% endif %}
+          </div>
+        </div>-->
+      </ul>
+    </nav>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %} {% if category ==
+  'error' %}
+  <div>
+    <div class="alert alert-danger alter-dismissable fade show" role="alert"
+      style="width: 40%; margin: 0 auto; z-index: 10;">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+  <div class="kontainer">{% block content %} {% endblock %}</div>
+  <div class="footer-basic">
+    <footer>
+      <div class="social"><a href="https://instagram.com"><i class="icon ion-social-instagram"></i></a><a
+          href="https://snapchat.com"><i class="icon ion-social-snapchat"></i></a><a href="https://twitter.com"><i
+            class="icon ion-social-twitter"></i></a><a href="https://facebook.com"><i
+            class="icon ion-social-facebook"></i></a></div>
+      <p class="copyright">Created with <i class="icon icon ion-ios-heart"></i></i> by Adrián Hochla</p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/c49d3daea6.js"></script>
+
+  <script>
+    $(function () {
+      $('a').each(function () {
+        if ($(this).prop('href') == window.location.href) {
+          $(this).addClass('active'); $(this).parents('li').addClass('active');
+        }
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
